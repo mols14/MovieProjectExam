@@ -10,7 +10,7 @@ public class Movie {
     private String url;
     private Date lastview;
 
-    public Movie(int id, String title, double rating, String url, Date lastview) {
+    public Movie(int id, String name, double rating, String url, Date lastview) {
         this.id = id;
         this.title = title;
         this.rating = rating;
@@ -31,7 +31,7 @@ public class Movie {
         return title;
     }
 
-    public void setTitle(String title) {
+    public void setName(String name) {
         this.title = title;
     }
 
@@ -59,5 +59,14 @@ public class Movie {
         this.lastview = lastview;
     }
 
-
+    @Override
+    public String toString() {
+        return "Movie{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", rating=" + rating +
+                ", url='" + url + '\'' +
+                ", lastview=" + lastview +
+                '}';
+    }
 }

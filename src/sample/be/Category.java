@@ -3,11 +3,11 @@ package sample.be;
 public class Category {
 
     private int id;
-    private String title;
+    private String name;
 
-    public Category(int id, String title) {
+    public Category(int id, String name) {
         this.id = id;
-        this.title = title;
+        this.name = name;
     }
 
     public int getId() {
@@ -19,10 +19,20 @@ public class Category {
     }
 
     public String getTitle() {
-        return title;
+        return name;
+    }
+
+    @Override
+    public String toString() {
+        return "Category{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 
     public void setTitle(String title) {
-        this.title = title;
+        this.name = name;
+
+
     }
 }
