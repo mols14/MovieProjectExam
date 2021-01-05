@@ -6,10 +6,8 @@ import java.io.IOException;
 import java.sql.*;
 
 public class CategoryDAO {
-<<<<<<< HEAD
 
-}
-=======
+
     private final JDBCConnectionPool connectionPool;
 
     public CategoryDAO() throws IOException  {
@@ -50,4 +48,3 @@ public class CategoryDAO {
     }
     }
 
->>>>>>> e649483213ae138b6f71598a7a6aa3873da3c25c
