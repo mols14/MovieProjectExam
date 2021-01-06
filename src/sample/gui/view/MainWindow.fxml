@@ -5,9 +5,12 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
 
+<<<<<<< Updated upstream
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="425.0" prefWidth="741.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.gui.controller.MainWindowController">
+=======
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="425.0" prefWidth="741.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.gui.controller.MainWindowController">
+>>>>>>> Stashed changes
    <children>
       <TableView layoutX="79.0" layoutY="64.0" prefHeight="298.0" prefWidth="173.0">
         <columns>
@@ -21,16 +24,18 @@
           <TableColumn prefWidth="75.0" text="Rating" />
         </columns>
       </TableView>
-      <TextField layoutX="526.0" layoutY="16.0" prefHeight="18.0" prefWidth="144.0" />
-      <Button layoutX="686.0" layoutY="16.0" mnemonicParsing="false" onAction="#handleSearchMovie" text="🔍">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Button>
+      <TextField fx:id="txtSearchField" layoutX="526.0" layoutY="16.0" onKeyReleased="#handleSearch" prefHeight="18.0" prefWidth="144.0" promptText="Enter Search..." />
       <Button layoutX="79.0" layoutY="380.0" mnemonicParsing="false" text="New" />
+<<<<<<< Updated upstream
       <Button layoutX="186.0" layoutY="380.0" mnemonicParsing="false" text="Remove" />
       <Button layoutX="371.0" layoutY="380.0" mnemonicParsing="false" text="New" />
       <Button layoutX="489.0" layoutY="380.0" mnemonicParsing="false" text="Remove" />
       <Button fx:id="closeButton" layoutX="658.0" layoutY="380.0" mnemonicParsing="false" onAction="#handleCloseSearch" text="Close" />
+=======
+      <Button layoutX="193.0" layoutY="380.0" mnemonicParsing="false" text="Remove" />
+      <Button layoutX="361.0" layoutY="380.0" mnemonicParsing="false" text="New" />
+      <Button layoutX="504.0" layoutY="380.0" mnemonicParsing="false" text="Remove" />
+      <Button fx:id="closeButton" layoutX="658.0" layoutY="380.0" mnemonicParsing="false" text="Close" />
+>>>>>>> Stashed changes
    </children>
 </AnchorPane>
