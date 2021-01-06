@@ -7,7 +7,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="425.0" prefWidth="741.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.gui.controller.MainWindowController">
    <children>
       <TableView layoutX="79.0" layoutY="64.0" prefHeight="298.0" prefWidth="173.0">
@@ -32,6 +31,6 @@
       <Button layoutX="186.0" layoutY="380.0" mnemonicParsing="false" text="Remove" />
       <Button layoutX="371.0" layoutY="380.0" mnemonicParsing="false" text="New" />
       <Button layoutX="489.0" layoutY="380.0" mnemonicParsing="false" text="Remove" />
-      <Button fx:id="closeButton" layoutX="658.0" layoutY="380.0" mnemonicParsing="false" text="Close" />
+      <Button fx:id="closeButton" layoutX="658.0" layoutY="380.0" mnemonicParsing="false" onAction="#handleCloseSearch" text="Close" />
    </children>
 </AnchorPane>
