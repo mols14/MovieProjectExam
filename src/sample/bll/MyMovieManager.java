@@ -28,6 +28,6 @@ public class MyMovieManager {
     }
 
     public List<Movie> getAllMovies() throws IOException {
-        return MovieDAO.getAllMovies();
+        return movieDAO.getAllMovies();
     }
 }
