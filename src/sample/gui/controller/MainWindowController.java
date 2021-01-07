@@ -12,13 +12,13 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class MainWindowController implements initializable {
+public class MainWindowController {
 
     private MovieModel movieModel;
     private ObservableList observableListMovies;
 
     @Override
-    public void initializable(URL url, ResourceBundle resourceBundle) {
+    public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
             ObservableList = movieModel.getMovies();
         } catch (IOException exception) {
