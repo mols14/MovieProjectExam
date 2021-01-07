@@ -16,10 +16,9 @@ public class CategoryDAO {
         connectionPool = JDBCConnectionPool.getInstance();
     }
 
-    public List<Category> getAllCategories() throws SQLException {
+    public List<Category> getAllCategories() throws IOException {
 
         ArrayList<Category> allCategories = new ArrayList<>();
-
         try (Connection connection = connectionPool.checkOut()) {
             String sql = "INSERT INTO Category (name) VALUES(?);";
             Statement statement = connection.createStatement();
@@ -38,7 +37,7 @@ public class CategoryDAO {
         return allCategories;
     }
 
-    
+
     public Category createCategory(String name) throws SQLException {
         String sql = "INSERT INTO Category (Name) VALUES(?);";
         Connection con = connectionPool.checkOut(); // <<< Using the object pool here <<<
