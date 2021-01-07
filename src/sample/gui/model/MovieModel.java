@@ -6,6 +6,8 @@ import sample.be.Movie;
 import sample.bll.MyMovieManager;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.Date;
 
 public class MovieModel {
 
@@ -22,5 +24,8 @@ public class MovieModel {
         return allMovies;
     }
 
+    public void createMovie(String title, double rating, String url, Date lastview) throws SQLException {
+        myMovieManager.createMovie(title, rating, url, lastview);
+    }
 
 }
