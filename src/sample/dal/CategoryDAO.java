@@ -15,6 +15,29 @@ public class CategoryDAO {
     public CategoryDAO() throws IOException  {
         connectionPool = JDBCConnectionPool.getInstance();
     }
+
+    public List<Category> getAllCategories() throws IOException {
+
+        ArrayList<Category> allCategories = new ArrayList<>();
+        try (Connection connection = connectionPool.checkOut()) {
+            String sql = "INSERT INTO Category (name) VALUES(?);";
+            Statement statement = connection.createStatement();
+            if (statement.execute(sql)) {
+                ResultSet resultSet = statement.getResultSet();
+                while (resultSet.next()) {
+                    int id = resultSet.getInt("id");
+                    String name = resultSet.getString("name");
+                    Category category = new Category(id, name);
+                    allCategories.add(category);
+                }
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return allCategories;
+    }
+
+
     public Category createCategory(String name) throws SQLException {
         String sql = "INSERT INTO Category (Name) VALUES(?);";
         Connection con = connectionPool.checkOut(); // <<< Using the object pool here <<<
@@ -49,26 +72,6 @@ public class CategoryDAO {
             return null;
     }
 
-    public List<Category> getAllCategories() throws SQLException {
 
-        ArrayList<Category> allCategories = new ArrayList<>();
-
-        try (Connection connection = connectionPool.checkOut()) {
-            String sql = "INSERT INTO Category (name) VALUES(?);";
-            Statement statement = connection.createStatement();
-            if (statement.execute(sql)) {
-                ResultSet resultSet = statement.getResultSet();
-                while (resultSet.next()) {
-                    int id = resultSet.getInt("id");
-                    String name = resultSet.getString("name");
-                    Category category = new Category(id, name);
-                    allCategories.add(category);
-                }
-            }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        return allCategories;
-    }
 }
 

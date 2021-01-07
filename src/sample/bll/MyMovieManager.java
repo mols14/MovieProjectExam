@@ -19,6 +19,10 @@ public class MyMovieManager {
         movieDAO = new MovieDAO();
     }
 
+    public List<Category> getAllCategories() throws IOException {
+        return categoryDAO.getAllCategories();
+    }
+
     public Movie createMovie(String title, double rating, String url, Date lastview) throws SQLException {
         return movieDAO.createMovie(title, rating, url, lastview);
     }
@@ -28,6 +32,6 @@ public class MyMovieManager {
     }
 
     public List<Movie> getAllMovies() throws IOException {
-        return MovieDAO.getAllMovies();
+        return movieDAO.getAllMovies();
     }
 }
