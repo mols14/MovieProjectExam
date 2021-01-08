@@ -72,7 +72,12 @@ public class MainWindowController implements MainWindowControllerInterface {
         }
     }
 
-    public void handleAddNewMovie(ActionEvent actionEvent) {
+    public void handleAddNewMovie(ActionEvent actionEvent) throws IOException {
+        Parent mainWindowParent = FXMLLoader.load(getClass().getResource("/sample/gui/view/NewMovie.fxml")); // Path til FXML filen der tilhøre scenen der skal vises
+        Scene mainWindowScene = new Scene(mainWindowParent); //Scenen der skal vises
+        Stage newMovieStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        newMovieStage.setScene(mainWindowScene); // Sætter nuværende scene
+        newMovieStage.show(); // Viser Scenen som lige er blevet sat ovenover
 
     }
 
