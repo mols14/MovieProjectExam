@@ -16,15 +16,21 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class MainWindowController {
+public class MainWindowController implements MainWindowControllerInterface {
 
     private MovieModel movieModel;
     private ObservableList observableListMovies;
+    public Button closeButton;
 
-    @Override
+    public MainWindowController()
+    {
+
+    }
+
+    
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            ObservableList = movieModel.getMovies();
+             observableListMovies = movieModel.getMovies();
         } catch (IOException exception) {
             exception.printStackTrace();
         }
@@ -32,7 +38,6 @@ public class MainWindowController {
     }
 
 
-    public Button closeButton;
 
     public void handleSearch(KeyEvent keyEvent) throws IOException {
         if (filterSearch.getText() == null || filterSearch.getText().length() <= 0) {

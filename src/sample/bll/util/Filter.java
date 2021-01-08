@@ -10,17 +10,19 @@ public class Filter {
     public List<Movie> filter(List<Movie> filterBase, String query) {
 
         List<Movie> filterResult = new ArrayList<>();
-        for (Movie movie : filterBase) {
-            if(compareToMovieTitle(query, movie) || compareToMovieCategory)
+        for (Movie movie  : filterBase) {
+            if(compareToMovieTitle(query, movie))
+                filterResult.add(movie);
         }
+        return filterResult;
     }
 
     private boolean compareToMovieTitle(String query, Movie movie) {
         return movie.getTitle().toLowerCase().contains(query.toLowerCase());
     }
 
-    private boolean compareToMovieCategory(String query, Movie movie) {
-        return category.getCategory().toLowerCase().contains(query.toLowerCase());
-    }
+   // private boolean compareToMovieCategory(String query, Movie movie) {
+     //   return category.getCategory().toLowerCase().contains(query.toLowerCase());
+    //}
 
 }
