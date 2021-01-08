@@ -7,10 +7,13 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 import javafx.scene.control.cell.PropertyValueFactory;
 import sample.be.Movie;
 import sample.gui.model.MovieModel;
+
+import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.net.URL;
@@ -18,6 +21,8 @@ import java.util.ResourceBundle;
 
 public class MainWindowController {
 
+    public TableView<Movie> tableViewMovies;
+    public TextField filter;
     private MovieModel movieModel;
     private ObservableList observableListMovies;
 
@@ -35,10 +40,10 @@ public class MainWindowController {
     public Button closeButton;
 
     public void handleSearch(KeyEvent keyEvent) throws IOException {
-        if (filterSearch.getText() == null || filterSearch.getText().length() <= 0) {
+        if (filter.getText() == null || filter.getText().length() <= 0) {
             tableViewMovies.setItems(movieModel.getMovies());
         } else {
-            ObservableList<Movie> foundMovieList = movieModel.filter(movieModel.getMovies(), filterSearch.getText());
+            ObservableList<Movie> foundMovieList = movieModel.filter(movieModel.getMovies(), filter.getText());
 
             tableViewMovies.setItems(foundMovieList);
 

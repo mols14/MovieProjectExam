@@ -8,6 +8,7 @@ import sample.bll.MyMovieManager;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Date;
+import java.util.List;
 
 public class MovieModel {
 
@@ -26,6 +27,10 @@ public class MovieModel {
 
     public void createMovie(String title, double rating, String url, Date lastview) throws SQLException {
         myMovieManager.createMovie(title, rating, url, lastview);
+    }
+
+    public ObservableList<Movie> filter(List<Movie> searchBase, String query) {
+        return myMovieManager.filter((ObservableList<Movie>) searchBase, query);
     }
 
 }
