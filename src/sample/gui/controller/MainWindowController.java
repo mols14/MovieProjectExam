@@ -7,10 +7,13 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 import javafx.scene.control.cell.PropertyValueFactory;
 import sample.be.Movie;
 import sample.gui.model.MovieModel;
+
+import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.net.URL;
@@ -18,6 +21,8 @@ import java.util.ResourceBundle;
 
 public class MainWindowController implements MainWindowControllerInterface {
 
+    public TableView<Movie> tableViewMovies;
+    public TextField filter;
     private MovieModel movieModel;
     private ObservableList observableListMovies;
     public Button closeButton;
@@ -39,16 +44,6 @@ public class MainWindowController implements MainWindowControllerInterface {
 
 
 
-    public void handleSearch(KeyEvent keyEvent) throws IOException {
-        if (filterSearch.getText() == null || filterSearch.getText().length() <= 0) {
-            tableViewMovies.setItems(movieModel.getMovies());
-        } else {
-            ObservableList<Movie> foundMovieList = movieModel.filter(movieModel.getMovies(), filterSearch.getText());
-
-            tableViewMovies.setItems(foundMovieList);
-
-        }
-    }
 
     public void handleClose(ActionEvent actionEvent) {
         Stage stage = (Stage) closeButton.getScene().getWindow();
@@ -62,5 +57,16 @@ public class MainWindowController implements MainWindowControllerInterface {
         Stage newSongStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         newSongStage.setScene(mainWindowScene); // Sætter nuværende scene
         newSongStage.show(); // Viser Scenen som lige er blevet sat ovenover
+    }
+
+    public void handleSearch(javafx.scene.input.KeyEvent keyEvent) throws IOException {
+        if (filter.getText() == null || filter.getText().length() <= 0) {
+            tableViewMovies.setItems(movieModel.getMovies());
+        } else {
+            ObservableList<Movie> foundMovieList = movieModel.filter(movieModel.getMovies(), filter.getText());
+
+            tableViewMovies.setItems(foundMovieList);
+
+        }
     }
 }

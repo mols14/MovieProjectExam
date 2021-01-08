@@ -3,11 +3,11 @@ package sample.be;
 public class Category {
 
     private int id;
-    private String name;
+    private String genre;
 
-    public Category(int id, String name) {
+    public Category(int id, String genre) {
         this.id = id;
-        this.name = name;
+        this.genre = genre;
     }
 
     public int getId() {
@@ -15,23 +15,25 @@ public class Category {
     }
 
     public void setId(int id) {
+
         this.id = id;
     }
 
     public String getTitle() {
-        return name;
+
+        return genre;
     }
 
     @Override
     public String toString() {
         return "Category{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", name='" + genre + '\'' +
                 '}';
     }
 
     public void setTitle(String title) {
-        this.name = name;
+        this.genre = genre;
 
 
     }
