@@ -58,9 +58,6 @@ public class MainWindowController implements MainWindowControllerInterface {
         categoryGenreCol.setCellValueFactory(new PropertyValueFactory<>("genre"));
     }
 
-
-
-
     public void handleClose(ActionEvent actionEvent) {
         Stage stage = (Stage) closeButton.getScene().getWindow();
         stage.close();
