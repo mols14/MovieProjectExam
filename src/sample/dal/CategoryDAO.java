@@ -20,14 +20,14 @@ public class CategoryDAO {
 
         ArrayList<Category> allCategories = new ArrayList<>();
         try (Connection connection = connectionPool.checkOut()) {
-            String sql = "INSERT INTO Category (name) VALUES(?);";
+            String sql = "INSERT INTO Category (genre) VALUES(?);";
             Statement statement = connection.createStatement();
             if (statement.execute(sql)) {
                 ResultSet resultSet = statement.getResultSet();
                 while (resultSet.next()) {
                     int id = resultSet.getInt("id");
-                    String name = resultSet.getString("name");
-                    Category category = new Category(id, name);
+                    String genre = resultSet.getString("genre");
+                    Category category = new Category(id, genre);
                     allCategories.add(category);
                 }
             }
@@ -38,18 +38,18 @@ public class CategoryDAO {
     }
 
 
-    public Category createCategory(String name) throws SQLException {
-        String sql = "INSERT INTO Category (Name) VALUES(?);";
+    public Category createCategory(String genre) throws SQLException {
+        String sql = "INSERT INTO Category (genre) VALUES(?);";
         Connection con = connectionPool.checkOut(); // <<< Using the object pool here <<<
         try (PreparedStatement st = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)){
-            st.setString(1,name);
+            st.setString(1,genre);
             st.executeUpdate();
             ResultSet rs = st.getGeneratedKeys();
             int id = 0;
             if (rs.next()){
                 id = rs.getInt(1);
             }
-            Category category = new Category(id,name);
+            Category category = new Category(id,genre);
             return category;
         } catch (SQLException ex) {
             throw new SQLException("Could not create category", ex);

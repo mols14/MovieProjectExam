@@ -8,10 +8,11 @@ import sample.bll.MyMovieManager;
 import java.io.IOException;
 import java.sql.SQLException;
 
-public class CategoryModel {
-private MyMovieManager myMovieManager;
-private ObservableList <Category> allCategories = FXCollections.observableArrayList();
-public CategoryModel() throws IOException {
+    public class CategoryModel {
+    private MyMovieManager myMovieManager;
+    private ObservableList <Category> allCategories = FXCollections.observableArrayList();
+
+    public CategoryModel() throws IOException {
     myMovieManager  = new MyMovieManager();
 }
 
@@ -20,6 +21,7 @@ public CategoryModel() throws IOException {
        allCategories.addAll(myMovieManager.getAllCategories());
         return allCategories;
     }
+
     public void createCategory(String name) throws SQLException {
         myMovieManager.createCategory(name);
     }

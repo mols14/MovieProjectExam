@@ -71,4 +71,11 @@ public class MainWindowController implements MainWindowControllerInterface {
 
         }
     }
+
+    public void handleAddNewMovie(ActionEvent actionEvent) {
+
+    }
+
+    public void handleRemoveMovie(ActionEvent actionEvent) {
+    }
 }
