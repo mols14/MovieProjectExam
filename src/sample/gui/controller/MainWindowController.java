@@ -39,16 +39,6 @@ public class MainWindowController {
 
     public Button closeButton;
 
-    public void handleSearch(KeyEvent keyEvent) throws IOException {
-        if (filter.getText() == null || filter.getText().length() <= 0) {
-            tableViewMovies.setItems(movieModel.getMovies());
-        } else {
-            ObservableList<Movie> foundMovieList = movieModel.filter(movieModel.getMovies(), filter.getText());
-
-            tableViewMovies.setItems(foundMovieList);
-
-        }
-    }
 
     public void handleClose(ActionEvent actionEvent) {
         Stage stage = (Stage) closeButton.getScene().getWindow();
@@ -62,5 +52,16 @@ public class MainWindowController {
         Stage newSongStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         newSongStage.setScene(mainWindowScene); // Sætter nuværende scene
         newSongStage.show(); // Viser Scenen som lige er blevet sat ovenover
+    }
+
+    public void handleSearch(javafx.scene.input.KeyEvent keyEvent) throws IOException {
+        if (filter.getText() == null || filter.getText().length() <= 0) {
+            tableViewMovies.setItems(movieModel.getMovies());
+        } else {
+            ObservableList<Movie> foundMovieList = movieModel.filter(movieModel.getMovies(), filter.getText());
+
+            tableViewMovies.setItems(foundMovieList);
+
+        }
     }
 }
