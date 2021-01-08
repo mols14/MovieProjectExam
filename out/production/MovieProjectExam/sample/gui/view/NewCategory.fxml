@@ -8,7 +8,7 @@
 
 <AnchorPane prefHeight="250.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.gui.controller.NewCategoryController">
    <children>
-      <Text layoutX="112.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New category" wrappingWidth="255.6708984375">
+      <Text layoutX="112.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New Category" wrappingWidth="255.6708984375">
          <font>
             <Font size="40.0" />
          </font>
