@@ -7,6 +7,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -22,14 +23,15 @@ import java.util.ResourceBundle;
 public class MainWindowController implements MainWindowControllerInterface {
 
     public TableView<Movie> tableViewMovies;
+    public TableColumn<String, Movie> movieTitleCol;
     public TextField filter;
     private MovieModel movieModel;
     private ObservableList observableListMovies;
     public Button closeButton;
 
-    public MainWindowController()
-    {
-
+    public MainWindowController() throws IOException {
+        tableViewMovies = new TableView<>();
+        movieModel = new MovieModel();
     }
 
     
