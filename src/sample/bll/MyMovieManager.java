@@ -32,8 +32,8 @@ public class MyMovieManager {
         return movieDAO.createMovie(title, rating, url, lastview);
     }
 
-    public Category createCategory(String name) throws SQLException {
-        return categoryDAO.createCategory(name);
+    public Category createCategory(String genre) throws SQLException {
+        return categoryDAO.createCategory(genre);
     }
 
     public List<Movie> getAllMovies() throws IOException {

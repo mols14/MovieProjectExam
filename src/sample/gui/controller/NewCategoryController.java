@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import sample.bll.MyMovieManager;
+import sample.gui.model.CategoryModel;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -16,9 +17,11 @@ public class NewCategoryController {
 
     public TextField txtFieldCategory;
     private MyMovieManager myMovieManager;
+    private CategoryModel categoryModel;
 
     public NewCategoryController() throws IOException {
         myMovieManager = new MyMovieManager();
+
     }
 
     public void cancelCategory(javafx.event.ActionEvent event) throws IOException {
@@ -31,7 +34,7 @@ public class NewCategoryController {
 
 
     public void handleCreateCategory(ActionEvent actionEvent) throws SQLException, IOException {
-        myMovieManager.createCategory(txtFieldCategory.getText());
+        categoryModel.createCategory(txtFieldCategory.getText());
         cancelCategory(actionEvent);
     }
 

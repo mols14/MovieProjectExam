@@ -19,22 +19,24 @@ public class Category {
         this.id = id;
     }
 
-    public String getTitle() {
+    public String getGenre() {
 
         return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+
+
     }
 
     @Override
     public String toString() {
         return "Category{" +
                 "id=" + id +
-                ", name='" + genre + '\'' +
+                ", genre='" + genre + '\'' +
                 '}';
     }
 
-    public void setTitle(String title) {
-        this.genre = genre;
 
-
-    }
 }

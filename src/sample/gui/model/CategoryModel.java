@@ -22,8 +22,8 @@ import java.sql.SQLException;
         return allCategories;
     }
 
-    public void createCategory(String name) throws SQLException {
-        myMovieManager.createCategory(name);
+    public void createCategory(String genre) throws SQLException {
+        myMovieManager.createCategory(genre);
     }
 }
 

@@ -11,7 +11,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 import javafx.scene.control.cell.PropertyValueFactory;
+import sample.be.Category;
 import sample.be.Movie;
+import sample.gui.model.CategoryModel;
 import sample.gui.model.MovieModel;
 
 import java.awt.*;
@@ -25,13 +27,19 @@ public class MainWindowController implements MainWindowControllerInterface {
     public TableView<Movie> tableViewMovies;
     public TableColumn<String, Movie> movieTitleCol;
     public TextField filter;
+    public TableColumn<Category, String> categoryGenreCol;
+    public TableView tableViewCategory;
     private MovieModel movieModel;
     private ObservableList observableListMovies;
     public Button closeButton;
+    private CategoryModel categoryModel;
+    private ObservableList observableListCategories;
 
     public MainWindowController() throws IOException {
         tableViewMovies = new TableView<>();
+        tableViewCategory = new TableView<>();
         movieModel = new MovieModel();
+        categoryModel = new CategoryModel();
     }
 
     
@@ -42,6 +50,12 @@ public class MainWindowController implements MainWindowControllerInterface {
             exception.printStackTrace();
         }
         movieTitleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
+        try {
+            observableListCategories = categoryModel.getCategories();
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        }
+        categoryGenreCol.setCellValueFactory(new PropertyValueFactory<>("genre"));
     }
 
 
@@ -53,7 +67,6 @@ public class MainWindowController implements MainWindowControllerInterface {
     }
 
     public void clickNewCategory(javafx.event.ActionEvent event) throws IOException {
-
         Parent mainWindowParent = FXMLLoader.load(getClass().getResource("/sample/gui/view/newCategory.fxml")); // Path til FXML filen der tilhøre scenen der skal vises
         Scene mainWindowScene = new Scene(mainWindowParent); //Scenen der skal vises
         Stage newSongStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
