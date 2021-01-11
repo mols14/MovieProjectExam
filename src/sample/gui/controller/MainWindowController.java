@@ -22,7 +22,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class MainWindowController {
+public class MainWindowController implements MainWindowControllerInterface {
 
     public TableView<Movie> tableViewMovies;
     public TableColumn<String, Movie> movieTitleCol;
@@ -71,6 +71,7 @@ public class MainWindowController {
         Stage newSongStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         newSongStage.setScene(mainWindowScene); // Sætter nuværende scene
         newSongStage.show(); // Viser Scenen som lige er blevet sat ovenover
+        refreshCategoryList();
     }
 
     public void handleSearch(javafx.scene.input.KeyEvent keyEvent) throws IOException {

@@ -18,12 +18,10 @@ public class NewCategoryController {
     public TextField txtFieldCategory;
     private MyMovieManager myMovieManager;
     private CategoryModel categoryModel;
-    private MainWindowController mainWindowController;
 
     public NewCategoryController() throws IOException {
         myMovieManager = new MyMovieManager();
         categoryModel = new CategoryModel();
-        mainWindowController = new MainWindowController();
 
     }
 
@@ -38,7 +36,6 @@ public class NewCategoryController {
 
     public void handleCreateCategory(ActionEvent actionEvent) throws SQLException, IOException {
         categoryModel.createCategory(txtFieldCategory.getText());
-        mainWindowController.refreshCategoryList();
         cancelCategory(actionEvent);
     }
 
