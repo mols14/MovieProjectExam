@@ -18,7 +18,7 @@ public class CategoryDAO {
 
         ArrayList<Category> allCategories = new ArrayList<>();
         try (Connection connection = connectionPool.checkOut()) {
-            String sql = "INSERT INTO Category (genre) VALUES(?);";
+            String sql = "SELECT * FROM Category;";
             Statement statement = connection.createStatement();
             if (statement.execute(sql)) {
                 ResultSet resultSet = statement.getResultSet();
