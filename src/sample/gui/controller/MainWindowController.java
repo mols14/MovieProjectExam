@@ -3,6 +3,7 @@ package sample.gui.controller;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -22,13 +23,14 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class MainWindowController implements MainWindowControllerInterface {
+public class MainWindowController implements Initializable {
 
     public TableView<Movie> tableViewMovies;
     public TableColumn<String, Movie> movieTitleCol;
+    public TableColumn<Double, Movie> movieRatingCol;
     public TextField filter;
-    public TableColumn<String, Category> categoryGenreCol;
     public TableView<Category> tableViewCategory;
+    public TableColumn<String, Category> categoryGenreCol;
     private MovieModel movieModel;
     public Button closeButton;
 

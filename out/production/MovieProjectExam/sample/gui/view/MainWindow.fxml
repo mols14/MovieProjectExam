@@ -6,7 +6,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="420.0" prefWidth="740.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.gui.controller.MainWindowController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="420.0" prefWidth="740.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.gui.controller.MainWindowController">
    <children>
       <TableView fx:id="tableViewCategory" layoutX="79.0" layoutY="64.0" prefHeight="298.0" prefWidth="173.0">
         <columns>
@@ -16,7 +16,7 @@
       </TableView>
       <TableView layoutX="361.0" layoutY="64.0" prefHeight="298.0" prefWidth="350.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="Rating" />
+          <TableColumn fx:id="movieRatingCol" prefWidth="75.0" text="Rating" />
           <TableColumn fx:id="movieTitleCol" prefWidth="75.0" text="Title" />
         </columns>
       </TableView>
