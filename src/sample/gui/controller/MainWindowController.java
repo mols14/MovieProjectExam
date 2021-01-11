@@ -28,7 +28,7 @@ public class MainWindowController implements MainWindowControllerInterface {
     public TableColumn<String, Movie> movieTitleCol;
     public TextField filter;
     public TableColumn<String, Category> categoryGenreCol;
-    public TableView tableViewCategory;
+    public TableView<Category> tableViewCategory;
     private MovieModel movieModel;
     public Button closeButton;
 
@@ -56,7 +56,8 @@ public class MainWindowController implements MainWindowControllerInterface {
         } catch (IOException exception) {
             exception.printStackTrace();
         }
-        categoryGenreCol.setCellValueFactory(new PropertyValueFactory<>("genre"));
+        categoryGenreCol.setCellValueFactory(new PropertyValueFactory<>("category"));
+        tableViewCategory.setItems(observableListCategories);
     }
 
     public void handleClose(ActionEvent actionEvent) {
@@ -70,6 +71,7 @@ public class MainWindowController implements MainWindowControllerInterface {
         Stage newSongStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         newSongStage.setScene(mainWindowScene); // Sætter nuværende scene
         newSongStage.show(); // Viser Scenen som lige er blevet sat ovenover
+        refreshCategoryList();
     }
 
     public void handleSearch(javafx.scene.input.KeyEvent keyEvent) throws IOException {
@@ -93,5 +95,10 @@ public class MainWindowController implements MainWindowControllerInterface {
     }
 
     public void handleRemoveMovie(ActionEvent actionEvent) {
+    }
+
+    public void refreshCategoryList() throws IOException {
+        tableViewCategory.getItems().clear();
+        tableViewCategory.setItems(categoryModel.getCategories());
     }
 }

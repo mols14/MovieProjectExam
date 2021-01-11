@@ -1,7 +1,5 @@
 package sample.dal;
-
 import sample.be.Category;
-
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
@@ -37,26 +35,32 @@ public class CategoryDAO {
         return allCategories;
     }
 
-
+    //Den rigtige
     public Category createCategory(String genre) throws SQLException {
         String sql = "INSERT INTO Category (genre) VALUES(?);";
         Connection con = connectionPool.checkOut(); // <<< Using the object pool here <<<
-        try (PreparedStatement st = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)){
-            st.setString(1,genre);
+        try (PreparedStatement st = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS))
+        {
+            st.setString(1, genre);
             st.executeUpdate();
             ResultSet rs = st.getGeneratedKeys();
             int id = 0;
-            if (rs.next()){
+            if (rs.next())
+            {
                 id = rs.getInt(1);
             }
-            Category category = new Category(id,genre);
+            Category category = new Category(id, genre);
             return category;
-        } catch (SQLException ex) {
-            throw new SQLException("Could not create category", ex);
-        } finally {
-            connectionPool.checkIn(con);
+        } catch (SQLException ex)
+        {
+            throw new SQLException("Could not create Category", ex);
+        } finally
+        {
+            connectionPool.checkIn(con);// <<< Using the object pool here <<<
         }
     }
+
+
 
     public Category deleteCategory(Category category) throws SQLException {
             try (Connection con = connectionPool.checkOut()) {

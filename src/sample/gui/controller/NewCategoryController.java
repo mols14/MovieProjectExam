@@ -21,6 +21,7 @@ public class NewCategoryController {
 
     public NewCategoryController() throws IOException {
         myMovieManager = new MyMovieManager();
+        categoryModel = new CategoryModel();
 
     }
 

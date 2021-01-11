@@ -19,7 +19,7 @@ import java.sql.SQLException;
     public ObservableList<Category> getCategories() throws IOException {
        allCategories = FXCollections.observableArrayList();
        allCategories.addAll(myMovieManager.getAllCategories());
-        return allCategories;
+       return allCategories;
     }
 
     public void createCategory(String genre) throws SQLException {
