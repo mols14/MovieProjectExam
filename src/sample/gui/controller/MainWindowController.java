@@ -27,7 +27,7 @@ public class MainWindowController implements MainWindowControllerInterface {
     public TableView<Movie> tableViewMovies;
     public TableColumn<String, Movie> movieTitleCol;
     public TextField filter;
-    public TableColumn<Category, String> categoryGenreCol;
+    public TableColumn<String, Category> categoryGenreCol;
     public TableView tableViewCategory;
     private MovieModel movieModel;
     public Button closeButton;
@@ -43,7 +43,7 @@ public class MainWindowController implements MainWindowControllerInterface {
         categoryModel = new CategoryModel();
     }
 
-    
+    @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
              observableListMovies = movieModel.getMovies();
