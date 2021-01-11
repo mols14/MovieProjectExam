@@ -56,7 +56,7 @@ public class MainWindowController implements MainWindowControllerInterface {
         } catch (IOException exception) {
             exception.printStackTrace();
         }
-        categoryGenreCol.setCellValueFactory(new PropertyValueFactory<>("category"));
+        categoryGenreCol.setCellValueFactory(new PropertyValueFactory<>("genre"));
         tableViewCategory.setItems(observableListCategories);
     }
 
