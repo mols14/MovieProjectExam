@@ -2,21 +2,21 @@ package sample.be;
 
 public class Category {
 
-    private int id;
+    private int categoryId;
     private String genre;
 
     public Category(int id, String genre) {
-        this.id = id;
+        this.categoryId = id;
         this.genre = genre;
     }
 
-    public int getId() {
-        return id;
+    public int getCategoryId() {
+        return categoryId;
     }
 
-    public void setId(int id) {
+    public void setCategoryId(int categoryId) {
 
-        this.id = id;
+        this.categoryId = categoryId;
     }
 
     public String getGenre() {
@@ -33,7 +33,7 @@ public class Category {
     @Override
     public String toString() {
         return "Category{" +
-                "id=" + id +
+                "id=" + categoryId +
                 ", genre='" + genre + '\'' +
                 '}';
     }

@@ -61,6 +61,7 @@ public class MainWindowController implements Initializable {
         }
         categoryGenreCol.setCellValueFactory(new PropertyValueFactory<>("genre"));
         tableViewCategory.setItems(observableListCategories);
+
     }
 
     public void handleClose(ActionEvent actionEvent) {
@@ -89,6 +90,8 @@ public class MainWindowController implements Initializable {
     }
 
     public void handleAddNewMovie(ActionEvent actionEvent) throws IOException {
+
+
         Parent mainWindowParent = FXMLLoader.load(getClass().getResource("/sample/gui/view/NewMovie.fxml")); // Path til FXML filen der tilhører scenen der skal vises
         Scene mainWindowScene = new Scene(mainWindowParent); //Scenen der skal vises
         Stage newMovieStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();

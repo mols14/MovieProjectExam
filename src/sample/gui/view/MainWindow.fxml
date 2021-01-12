@@ -25,7 +25,7 @@
       <TextField layoutX="361.0" layoutY="24.0" onKeyReleased="#handleSearch" prefHeight="18.0" prefWidth="144.0" promptText="Enter Search..." />
       <Button layoutX="79.0" layoutY="380.0" mnemonicParsing="false" onAction="#clickNewCategory" text="New" />
       <Button layoutX="193.0" layoutY="380.0" mnemonicParsing="false" onAction="#removeCategory" text="Remove" />
-      <Button fx:id="addNewMovie" layoutX="361.0" layoutY="380.0" mnemonicParsing="false" onAction="#handleAddNewMovie" text="Add" />
+      <Button layoutX="361.0" layoutY="380.0" mnemonicParsing="false" onAction="#handleAddNewMovie" text="Add" />
       <Button fx:id="removeMovie" layoutX="425.0" layoutY="380.0" mnemonicParsing="false" onAction="#handleRemoveMovie" text="Remove" />
       <Button fx:id="closeButton" layoutX="666.0" layoutY="380.0" mnemonicParsing="false" onAction="#handleClose" text="Close" />
    </children>

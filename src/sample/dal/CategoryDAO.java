@@ -1,4 +1,5 @@
 package sample.dal;
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 import sample.be.Category;
 import java.io.IOException;
 import java.sql.*;
@@ -66,7 +67,7 @@ public class CategoryDAO {
             try (Connection con = connectionPool.checkOut()) {
                 String sql = "DELETE FROM Category WHERE Id=?;";
                 PreparedStatement preparedStatement = con.prepareStatement(sql);
-                preparedStatement.setInt(1, category.getId());
+                preparedStatement.setInt(1, category.getCategoryId());
                 if (preparedStatement.executeUpdate() != 1) {
                     throw new Exception("Could not delete Playlist: " + category.toString());
                 }
@@ -74,6 +75,23 @@ public class CategoryDAO {
                 e.printStackTrace();
             }
             return null;
+    }
+
+    public void addMovieToCategory(int categoryId, int movieId)
+    {
+        //Insert into SQL kommando, hvori at playlistID og songID bliver smidt ind
+        String sql = "INSERT INTO PlaylistSong(playlistId, songId) VALUES (?, ?)";
+        try (Connection con = connectionPool.checkOut()) {
+            PreparedStatement preparedStatement = con.prepareStatement(sql);
+            //Sætter parametre
+            preparedStatement.setInt(1, categoryId);
+            preparedStatement.setInt(2, movieId);
+            preparedStatement.execute();
+        } catch (SQLServerException ex) {
+            System.out.println(ex);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
     }
 
 

@@ -33,4 +33,10 @@ public class MovieModel {
         return myMovieManager.filter((ObservableList<Movie>) searchBase, query);
     }
 
+    public ObservableList<Movie> getCategoryMovies(int categoryId) throws IOException {
+        ObservableList<Movie> movies = FXCollections.observableArrayList();
+        movies.addAll(myTunesManager.getPlaylistSongs(playlistId));
+        return movies;
+    }
+
 }
