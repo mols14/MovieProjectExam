@@ -69,7 +69,7 @@ public class MainWindowController implements Initializable {
     }
 
     public void clickNewCategory(javafx.event.ActionEvent event) throws IOException {
-        Parent mainWindowParent = FXMLLoader.load(getClass().getResource("/sample/gui/view/newCategory.fxml")); // Path til FXML filen der tilhøre scenen der skal vises
+        Parent mainWindowParent = FXMLLoader.load(getClass().getResource("/sample/gui/view/newCategory.fxml")); // Path til FXML filen der tilhører scenen der skal vises
         Scene mainWindowScene = new Scene(mainWindowParent); //Scenen der skal vises
         Stage newSongStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         newSongStage.setScene(mainWindowScene); // Sætter nuværende scene
@@ -89,7 +89,7 @@ public class MainWindowController implements Initializable {
     }
 
     public void handleAddNewMovie(ActionEvent actionEvent) throws IOException {
-        Parent mainWindowParent = FXMLLoader.load(getClass().getResource("/sample/gui/view/NewMovie.fxml")); // Path til FXML filen der tilhøre scenen der skal vises
+        Parent mainWindowParent = FXMLLoader.load(getClass().getResource("/sample/gui/view/NewMovie.fxml")); // Path til FXML filen der tilhører scenen der skal vises
         Scene mainWindowScene = new Scene(mainWindowParent); //Scenen der skal vises
         Stage newMovieStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         newMovieStage.setScene(mainWindowScene); // Sætter nuværende scene
