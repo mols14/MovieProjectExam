@@ -21,6 +21,7 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class MainWindowController implements Initializable {
@@ -96,11 +97,25 @@ public class MainWindowController implements Initializable {
 
     }
 
-    public void handleRemoveMovie(ActionEvent actionEvent) {
+    public void handleRemoveMovie(ActionEvent actionEvent) throws SQLException {
+
     }
 
     public void refreshCategoryList() throws IOException {
         tableViewCategory.getItems().clear();
         tableViewCategory.setItems(categoryModel.getCategories());
+    }
+
+    public void removeCategory(ActionEvent actionEvent) {
+        Category category = tableViewCategory.getSelectionModel().getSelectedItem();
+        tableViewCategory.getItems().remove(category);
+            if(category != null)
+            {
+                try {
+                    categoryModel.removeCategory(category);
+                } catch (Exception exception) {
+                    exception.printStackTrace();
+                }
+            }
     }
 }

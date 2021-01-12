@@ -25,5 +25,9 @@ import java.sql.SQLException;
     public void createCategory(String genre) throws SQLException {
         myMovieManager.createCategory(genre);
     }
+
+    public void removeCategory(Category deleteCategory) throws SQLException {
+        myMovieManager.deleteCategory(deleteCategory);
+    }
 }
 
