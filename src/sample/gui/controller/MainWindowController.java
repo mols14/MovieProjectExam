@@ -32,6 +32,9 @@ public class MainWindowController implements Initializable {
     public TextField filter;
     public TableView<Category> tableViewCategory;
     public TableColumn<String, Category> categoryGenreCol;
+    public TableColumn movieIMDbRatingCol;
+    public TableColumn moviePersRatingCol;
+    public TableColumn movieLastViewCol;
     private MovieModel movieModel;
     public Button closeButton;
 
@@ -54,6 +57,10 @@ public class MainWindowController implements Initializable {
             exception.printStackTrace();
         }
         movieTitleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
+        moviePersRatingCol.setCellValueFactory(new PropertyValueFactory<>("rating"));
+        movieLastViewCol.setCellValueFactory(new PropertyValueFactory<>("lastview"));
+        tableViewMovies.setItems(observableListMovies);
+
         try {
             observableListCategories = categoryModel.getCategories();
         } catch (IOException exception) {
@@ -61,6 +68,7 @@ public class MainWindowController implements Initializable {
         }
         categoryGenreCol.setCellValueFactory(new PropertyValueFactory<>("genre"));
         tableViewCategory.setItems(observableListCategories);
+
 
     }
 
@@ -90,7 +98,7 @@ public class MainWindowController implements Initializable {
     }
 
     public void handleAddNewMovie(ActionEvent actionEvent) throws IOException {
-
+        tableViewCategory.getSelectionModel().getSelectedItem();
 
         Parent mainWindowParent = FXMLLoader.load(getClass().getResource("/sample/gui/view/NewMovie.fxml")); // Path til FXML filen der tilhører scenen der skal vises
         Scene mainWindowScene = new Scene(mainWindowParent); //Scenen der skal vises
