@@ -22,19 +22,19 @@ import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 public class MainWindowController implements Initializable {
 
     public TableView<Movie> tableViewMovies;
     public TableColumn<String, Movie> movieTitleCol;
-    public TableColumn<Double, Movie> movieRatingCol;
+    public TableColumn<Double, Movie> moviePersRatingCol;
     public TextField filter;
     public TableView<Category> tableViewCategory;
     public TableColumn<String, Category> categoryGenreCol;
     public TableColumn movieIMDbRatingCol;
-    public TableColumn moviePersRatingCol;
-    public TableColumn movieLastViewCol;
+    public TableColumn<Date, Movie> movieLastViewCol;
     private MovieModel movieModel;
     public Button closeButton;
 
@@ -68,8 +68,6 @@ public class MainWindowController implements Initializable {
         }
         categoryGenreCol.setCellValueFactory(new PropertyValueFactory<>("genre"));
         tableViewCategory.setItems(observableListCategories);
-
-
     }
 
     public void handleClose(ActionEvent actionEvent) {
@@ -93,13 +91,13 @@ public class MainWindowController implements Initializable {
             ObservableList<Movie> foundMovieList = movieModel.filter(movieModel.getMovies(), filter.getText());
 
             tableViewMovies.setItems(foundMovieList);
-
         }
     }
 
     public void handleAddNewMovie(ActionEvent actionEvent) throws IOException {
-        tableViewCategory.getSelectionModel().getSelectedItem();
-
+        Category selectedCategory =  tableViewCategory.getSelectionModel().getSelectedItem();
+        Movie selectedMovie = tableViewMovies.getSelectionModel().getSelectedItem();
+        categoryModel.addMovieToCategory(selectedCategory.getCategoryId(), selectedMovie.getId());
         Parent mainWindowParent = FXMLLoader.load(getClass().getResource("/sample/gui/view/NewMovie.fxml")); // Path til FXML filen der tilhører scenen der skal vises
         Scene mainWindowScene = new Scene(mainWindowParent); //Scenen der skal vises
         Stage newMovieStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
