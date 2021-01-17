@@ -34,6 +34,9 @@ import java.sql.SQLException;
     {
         myMovieManager.addMovieToCategory(categoryId, movieId);
     }
+    public void deleteMovieFromCategory(int CategoryId, int MovieId){
+        myMovieManager.deleteMovieFromCategory(CategoryId, MovieId);
+    }
 
 }
 

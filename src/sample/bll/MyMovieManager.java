@@ -57,5 +57,12 @@ public class MyMovieManager {
         foundMovies.addAll(filter.filter(filterbase, query));
         return foundMovies;
     }
+    public Movie deleteMovie(Movie movie) throws SQLException {
+        return movieDAO.deleteMovie(movie);
+    }
+    public void deleteMovieFromCategory(int CategoryId, int MovieId)
+    {
+        categoryDAO.deleteMovieFromCategory(CategoryId, MovieId);
+    }
 
 }

@@ -94,6 +94,21 @@ public class CategoryDAO {
         }
     }
 
+    public void deleteMovieFromCategory(int CategoryId, int MovieId)
+    {
+        String sql = "DELETE FROM CatMovie where CategoryId = ? and MovieId = ?";
+        try (Connection con = connectionPool.checkOut()) {
+            PreparedStatement preparedStatement = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            preparedStatement.setInt(1, CategoryId);
+            preparedStatement.setInt(2, MovieId);
+            preparedStatement.executeUpdate();
+        } catch (SQLServerException ex) {
+            System.out.println(ex);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+
 
 }
 

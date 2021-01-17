@@ -133,7 +133,16 @@ public class MainWindowController implements Initializable {
     }
 
     public void handleRemoveMovie(ActionEvent actionEvent) throws SQLException {
-
+        Movie movie = tableViewMovies.getSelectionModel().getSelectedItem();
+        Category category = tableViewCategory.getSelectionModel().getSelectedItem();
+        tableViewMovies.getItems().remove(movie);
+            if(movie != null){
+                try {
+                    categoryModel.deleteMovieFromCategory(category.getCategoryId(), movie.getId());
+                } catch (Exception exception) {
+                    exception.printStackTrace();
+                }
+            }
     }
 
     public void refreshCategoryList() throws IOException {

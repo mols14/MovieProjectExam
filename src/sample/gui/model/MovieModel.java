@@ -38,6 +38,9 @@ public class MovieModel {
         movies.addAll(myMovieManager.getCategoryMovies(categoryId));
         return movies;
     }
+    public Movie deleteMovie(Movie movie) throws SQLException {
+        return myMovieManager.deleteMovie(movie);
+    }
 
 
 }
