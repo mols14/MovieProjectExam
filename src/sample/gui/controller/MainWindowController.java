@@ -95,14 +95,6 @@ public class MainWindowController implements Initializable {
         stage.close();
     }
 
-    public void clickNewCategory(javafx.event.ActionEvent event) throws IOException {
-        Parent mainWindowParent = FXMLLoader.load(getClass().getResource("/sample/gui/view/newCategory.fxml")); // Path til FXML filen der tilhører scenen der skal vises
-        Scene mainWindowScene = new Scene(mainWindowParent); //Scenen der skal vises
-        Stage newSongStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        newSongStage.setScene(mainWindowScene); // Sætter nuværende scene
-        newSongStage.show(); // Viser Scenen som lige er blevet sat ovenover
-        refreshCategoryList();
-    }
 
     public void handleSearch(javafx.scene.input.KeyEvent keyEvent) throws IOException {
         if (filter.getText() == null || filter.getText().length() <= 0) {
@@ -114,7 +106,16 @@ public class MainWindowController implements Initializable {
         }
     }
 
-    public void handleAddNewMovie(ActionEvent actionEvent) throws IOException {
+    public void clickNewCategory(javafx.event.ActionEvent event) throws IOException {
+        Parent mainWindowParent = FXMLLoader.load(getClass().getResource("/sample/gui/view/newCategory.fxml")); // Path til FXML filen der tilhører scenen der skal vises
+        Scene mainWindowScene = new Scene(mainWindowParent); //Scenen der skal vises
+        Stage newSongStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        newSongStage.setScene(mainWindowScene); // Sætter nuværende scene
+        newSongStage.show(); // Viser Scenen som lige er blevet sat ovenover
+        refreshCategoryList();
+    }
+
+    public void handleAddNewMovie(ActionEvent actionEvent) throws IOException, SQLException {
         Category selectedCategory =  tableViewCategory.getSelectionModel().getSelectedItem();
         //categoryModel.addMovieToCategory(selectedCategory.getCategoryId(), selectedMovie.getId());
 
@@ -126,9 +127,10 @@ public class MainWindowController implements Initializable {
         controller.setCategory(selectedCategory);
 
         Scene mainWindowScene = new Scene(mainWindowParent); //Scenen der skal vises
-        Stage newMovieStage = new Stage();
+        Stage newMovieStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         newMovieStage.setScene(mainWindowScene); // Sætter nuværende scene
         newMovieStage.show(); // Viser Scenen som lige er blevet sat ovenover
+        refreshMovieCategories();
 
     }
 
@@ -144,6 +146,12 @@ public class MainWindowController implements Initializable {
                 }
             }
     }
+    public void refreshMovieCategories() throws IOException, SQLException {
+        tableViewMovies.getItems().clear();
+        Category selectedCategory = tableViewCategory.getSelectionModel().getSelectedItem();
+        tableViewMovies.setItems(movieModel.getCategoryMovies(selectedCategory.getCategoryId()));
+    }
+
 
     public void refreshCategoryList() throws IOException {
         tableViewCategory.getItems().clear();
