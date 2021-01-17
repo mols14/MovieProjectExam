@@ -45,12 +45,10 @@ public class NewMovieController {
         Stage mainWindowStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         mainWindowStage.setScene(newSongScene); // Sætter den nye scene
         mainWindowStage.show(); // Viser den nye scene
-
     }
 
     public void setCategory(Category selectedCategory) {
         txtCategoryId.setText(Integer.toString(selectedCategory.getCategoryId()));
-
     }
 
     public void handleNewMovieDone(ActionEvent actionEvent) throws SQLException, IOException {

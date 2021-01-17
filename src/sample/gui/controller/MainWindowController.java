@@ -118,14 +118,11 @@ public class MainWindowController implements Initializable {
     public void handleAddNewMovie(ActionEvent actionEvent) throws IOException, SQLException {
         Category selectedCategory =  tableViewCategory.getSelectionModel().getSelectedItem();
         //categoryModel.addMovieToCategory(selectedCategory.getCategoryId(), selectedMovie.getId());
-
         FXMLLoader  loader = new FXMLLoader(getClass().getResource("/sample/gui/view/NewMovie.fxml")); // Path til FXML filen der tilhører scenen der skal vises
         Parent mainWindowParent = loader.load();
-
         //sæt category i new movie window til valgte categoey
         NewMovieController controller = loader.getController();
         controller.setCategory(selectedCategory);
-
         Scene mainWindowScene = new Scene(mainWindowParent); //Scenen der skal vises
         Stage newMovieStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         newMovieStage.setScene(mainWindowScene); // Sætter nuværende scene
@@ -175,4 +172,7 @@ public class MainWindowController implements Initializable {
         Movie movie = tableViewMovies.getSelectionModel().getSelectedItem();
         Desktop.getDesktop().open(new File(moviePath + movie.getUrl()));
     }
+
+
+
 }

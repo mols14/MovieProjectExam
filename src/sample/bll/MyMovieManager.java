@@ -65,4 +65,8 @@ public class MyMovieManager {
         categoryDAO.deleteMovieFromCategory(CategoryId, MovieId);
     }
 
+    public void updateSong(Movie movie) throws Exception {
+        movieDAO.updateMovie(movie);
+    }
+
 }

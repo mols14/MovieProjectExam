@@ -114,6 +114,23 @@ public class MovieDAO {
         }
         return allMovies;
     }
+
+
+    public void updateMovie(Movie movie) throws Exception {
+        try (Connection con = connectionPool.checkOut()) {
+            //Updater sange med de nye values ind i sang objektet
+            String sql = "UPDATE Song SET title=?, rating=?, url =?, lastview=? WHERE Id=?;";
+            PreparedStatement preparedStatement = con.prepareStatement(sql);
+            preparedStatement.setString(1, movie.getTitle());
+            preparedStatement.setDouble(2, movie.getRating());
+            preparedStatement.setString(3, movie.getUrl());
+            preparedStatement.setDate(4, (java.sql.Date) movie.getLastview());
+            preparedStatement.setInt(5, movie.getId());
+            if (preparedStatement.executeUpdate() != 1) {
+                throw new Exception("Could not update Song: " + movie.toString());
+            }
+        }
+    }
 }
 
 
