@@ -12,7 +12,7 @@ public class Filter {
 
         List<Movie> filterResult = new ArrayList<>();
         for (Movie movie  : filterBase) {
-            if (compareToMovieTitle(query, movie)) {
+            if (compareToMovieTitle(query, movie) || (compareToMovieRating(query, movie))) {
                 filterResult.add(movie);
             }
         }
@@ -35,6 +35,11 @@ public class Filter {
 
     private boolean compareToMovieCategory(String query, Category category) {
         return category.getGenre().toLowerCase().contains(query.toLowerCase());
+    }
+
+    private boolean compareToMovieRating(String query, Movie movie)
+    {
+        return Double.toString(movie.getRating()).toLowerCase().contains(query.toLowerCase());
     }
 
 }

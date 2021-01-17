@@ -31,7 +31,6 @@ public class MainWindowController implements Initializable {
     public TableView<Movie> tableViewMovies;
     public TableColumn<String, Movie> movieTitleCol;
     public TableColumn<Double, Movie> moviePersRatingCol;
-    public TextField filter;
     public TableView<Category> tableViewCategory;
     public TableColumn<String, Category> categoryGenreCol;
     public TableColumn movieIMDbRatingCol;
@@ -68,7 +67,10 @@ public class MainWindowController implements Initializable {
         }
         categoryGenreCol.setCellValueFactory(new PropertyValueFactory<>("genre"));
         tableViewCategory.setItems(observableListCategories);
-
+        movieTitleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
+        moviePersRatingCol.setCellValueFactory(new PropertyValueFactory<>("rating"));
+        movieLastViewCol.setCellValueFactory(new PropertyValueFactory<>("lastview"));
+        tableViewMovies.setItems(observableListMovies);
 
         tableViewCategory.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
@@ -96,12 +98,19 @@ public class MainWindowController implements Initializable {
     }
 
 
-    public void handleSearch(javafx.scene.input.KeyEvent keyEvent) throws IOException {
-        if (filter.getText() == null || filter.getText().length() <= 0) {
-            tableViewMovies.setItems(movieModel.getMovies());
-        } else {
-            ObservableList<Movie> foundMovieList = movieModel.filter(movieModel.getMovies(), filter.getText());
+    public void handleSearch(javafx.scene.input.KeyEvent keyEvent) throws IOException, SQLException {
+        String searchParam = keyEvent.getText();
+        if (searchParam == null || searchParam.length() <= 0) {
+            Category selectedCategory = tableViewCategory.getSelectionModel().getSelectedItem();
+            if(selectedCategory != null){
+                tableViewMovies.setItems(movieModel.getCategoryMovies(selectedCategory.getCategoryId()));
 
+            }
+            else {
+                tableViewMovies.setItems(movieModel.getMovies());
+            }
+        } else {
+            ObservableList<Movie> foundMovieList = movieModel.filter(movieModel.getMovies(), searchParam);
             tableViewMovies.setItems(foundMovieList);
         }
     }
