@@ -80,7 +80,7 @@ public class CategoryDAO {
     public void addMovieToCategory(int categoryId, int movieId)
     {
         //Insert into SQL kommando, hvori at playlistID og songID bliver smidt ind
-        String sql = "INSERT INTO PlaylistSong(playlistId, songId) VALUES (?, ?)";
+        String sql = "INSERT INTO CatMovie(CategoryId, MovieId) VALUES (?, ?)";
         try (Connection con = connectionPool.checkOut()) {
             PreparedStatement preparedStatement = con.prepareStatement(sql);
             //Sætter parametre

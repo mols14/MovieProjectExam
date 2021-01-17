@@ -19,6 +19,7 @@ import sample.gui.model.MovieModel;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -41,6 +42,8 @@ public class MainWindowController implements Initializable {
     private ObservableList observableListMovies;
     private CategoryModel categoryModel;
     private ObservableList observableListCategories;
+    private String moviePath = "Movies/";
+
 
     public MainWindowController() throws IOException {
         tableViewMovies = new TableView<>();
@@ -56,10 +59,7 @@ public class MainWindowController implements Initializable {
         } catch (IOException exception) {
             exception.printStackTrace();
         }
-        movieTitleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
-        moviePersRatingCol.setCellValueFactory(new PropertyValueFactory<>("rating"));
-        movieLastViewCol.setCellValueFactory(new PropertyValueFactory<>("lastview"));
-        tableViewMovies.setItems(observableListMovies);
+
 
         try {
             observableListCategories = categoryModel.getCategories();
@@ -68,6 +68,26 @@ public class MainWindowController implements Initializable {
         }
         categoryGenreCol.setCellValueFactory(new PropertyValueFactory<>("genre"));
         tableViewCategory.setItems(observableListCategories);
+
+
+        tableViewCategory.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                Category category = newSelection;
+                try {
+                    ObservableList movies = movieModel.getCategoryMovies(category.getCategoryId());
+                    movieTitleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
+                    moviePersRatingCol.setCellValueFactory(new PropertyValueFactory<>("rating"));
+                    movieLastViewCol.setCellValueFactory(new PropertyValueFactory<>("lastview"));
+                    tableViewMovies.setItems(movies);
+                    tableViewMovies.getSelectionModel().selectFirst();
+
+                } catch (IOException | SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+
     }
 
     public void handleClose(ActionEvent actionEvent) {
@@ -96,11 +116,17 @@ public class MainWindowController implements Initializable {
 
     public void handleAddNewMovie(ActionEvent actionEvent) throws IOException {
         Category selectedCategory =  tableViewCategory.getSelectionModel().getSelectedItem();
-        Movie selectedMovie = tableViewMovies.getSelectionModel().getSelectedItem();
-        categoryModel.addMovieToCategory(selectedCategory.getCategoryId(), selectedMovie.getId());
-        Parent mainWindowParent = FXMLLoader.load(getClass().getResource("/sample/gui/view/NewMovie.fxml")); // Path til FXML filen der tilhører scenen der skal vises
+        //categoryModel.addMovieToCategory(selectedCategory.getCategoryId(), selectedMovie.getId());
+
+        FXMLLoader  loader = new FXMLLoader(getClass().getResource("/sample/gui/view/NewMovie.fxml")); // Path til FXML filen der tilhører scenen der skal vises
+        Parent mainWindowParent = loader.load();
+
+        //sæt category i new movie window til valgte categoey
+        NewMovieController controller = loader.getController();
+        controller.setCategory(selectedCategory);
+
         Scene mainWindowScene = new Scene(mainWindowParent); //Scenen der skal vises
-        Stage newMovieStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        Stage newMovieStage = new Stage();
         newMovieStage.setScene(mainWindowScene); // Sætter nuværende scene
         newMovieStage.show(); // Viser Scenen som lige er blevet sat ovenover
 
@@ -126,5 +152,10 @@ public class MainWindowController implements Initializable {
                     exception.printStackTrace();
                 }
             }
+    }
+
+    public void handlOpenMovie(ActionEvent actionEvent) throws IOException {
+        Movie movie = tableViewMovies.getSelectionModel().getSelectedItem();
+        Desktop.getDesktop().open(new File(moviePath + movie.getUrl()));
     }
 }

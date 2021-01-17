@@ -5,6 +5,7 @@ import sample.be.Movie;
 
 import java.io.IOException;
 import java.sql.*;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -49,13 +50,15 @@ public class MovieDAO {
             st.setString(1, title);
             st.setDouble(2, rating);
             st.setString(3, url);
-            st.setDate(4, (java.sql.Date) lastview);
+            java.sql.Date time = new java.sql.Date(lastview.getTime());
+            st.setDate(4,  time);
             st.executeUpdate();
             ResultSet rs = st.getGeneratedKeys();
             int id = 0;
             if (rs.next()) {
                 id = rs.getInt(1);
             }
+
             Movie movie = new Movie(id, title, rating, url, lastview);
             return movie;
         } catch (SQLException ex) {
@@ -82,9 +85,9 @@ public class MovieDAO {
     public List<Movie> getCategoryMovies(int categoryID) throws SQLException {
         ArrayList<Movie> allMovies = new ArrayList<>();
         try (Connection con = connectionPool.checkOut()) {
-            String sql = "SELECT * FROM Category c " +
-                    "     inner join CatMovie cm on cm.CategoryId = c.id" +
-                    "       where cm.MovieId = ?;";
+            String sql = "SELECT * FROM Movie m " +
+                    "     inner join CatMovie cm on cm.MovieId = m.id" +
+                    "       where cm.categoryID = ?;";
             PreparedStatement preparedStatement = con.prepareStatement(sql);
             preparedStatement.setInt(1, categoryID);
 

@@ -25,8 +25,8 @@ public class MovieModel {
         return allMovies;
     }
 
-    public void createMovie(String title, double rating, String url, Date lastview) throws SQLException {
-        myMovieManager.createMovie(title, rating, url, lastview);
+    public Movie createMovie(String title, double rating, String url, Date lastview) throws SQLException {
+        return myMovieManager.createMovie(title, rating, url, lastview);
     }
 
     public ObservableList<Movie> filter(List<Movie> searchBase, String query) {
