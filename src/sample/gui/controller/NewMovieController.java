@@ -45,6 +45,7 @@ public class NewMovieController {
         Stage mainWindowStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         mainWindowStage.setScene(newSongScene); // Sætter den nye scene
         mainWindowStage.show(); // Viser den nye scene
+
     }
 
     public void setCategory(Category selectedCategory) {
@@ -52,12 +53,13 @@ public class NewMovieController {
 
     }
 
-    public void handleNewMovieDone(ActionEvent actionEvent) throws SQLException {
+    public void handleNewMovieDone(ActionEvent actionEvent) throws SQLException, IOException {
         LocalDate localDate = datePicker.getValue();
         Instant instant = Instant.from(localDate.atStartOfDay(ZoneId.systemDefault()));
         Date date = Date.from(instant);
         Movie createdMovie = movieModel.createMovie(txtFieldMovieTitle.getText(), Double.parseDouble(txtFieldNewMoviePersonalRating.getText()), txtURL.getText(), date);
         categorymodel.addMovieToCategory(Integer.parseInt(txtCategoryId.getText()),createdMovie.getId());
+        handleNewMovieCancel(actionEvent);
     }
 
     public void chooseUrl(ActionEvent actionEvent) {
