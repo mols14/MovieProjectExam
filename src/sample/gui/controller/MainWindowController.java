@@ -122,7 +122,7 @@ public class MainWindowController implements Initializable {
         FXMLLoader  loader = new FXMLLoader(getClass().getResource("/sample/gui/view/NewMovie.fxml")); // Path til FXML filen der tilhører scenen der skal vises
         Parent mainWindowParent = loader.load();
 
-        //sæt category i new movie window til valgte categoey
+        //sæt category i new movie window til valgte category
         NewMovieController controller = loader.getController();
         controller.setCategory(selectedCategory);
 

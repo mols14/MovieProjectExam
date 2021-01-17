@@ -2,6 +2,7 @@ package sample.gui.model;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import sample.be.Category;
 import sample.be.Movie;
 import sample.bll.MyMovieManager;
 
@@ -31,6 +32,10 @@ public class MovieModel {
 
     public ObservableList<Movie> filter(List<Movie> searchBase, String query) {
         return myMovieManager.filter((ObservableList<Movie>) searchBase, query);
+    }
+
+    public ObservableList<Category> filterCat(List<Category> searchBaseCat, String query) {
+        return myMovieManager.filterCat((ObservableList<Category>) searchBaseCat, query);
     }
 
     public ObservableList<Movie> getCategoryMovies(int categoryId) throws IOException, SQLException {
