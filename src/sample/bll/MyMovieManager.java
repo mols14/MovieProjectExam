@@ -57,9 +57,17 @@ public class MyMovieManager {
         foundMovies.addAll(filter.filter(filterbase, query));
         return foundMovies;
     }
+
+    public ObservableList<Category> filterCat(ObservableList<Category> filterBaseCat, String query) {
+        ObservableList<Category> foundMovies = FXCollections.observableArrayList();
+        foundMovies.addAll(filter.filterCat(filterBaseCat, query));
+        return foundMovies;
+    }
+
     public Movie deleteMovie(Movie movie) throws SQLException {
         return movieDAO.deleteMovie(movie);
     }
+
     public void deleteMovieFromCategory(int CategoryId, int MovieId)
     {
         categoryDAO.deleteMovieFromCategory(CategoryId, MovieId);
