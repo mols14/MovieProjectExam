@@ -248,10 +248,6 @@ public class MainWindowController implements Initializable {
      */
     public void handleEditSong(ActionEvent actionEvent) throws IOException {
         Movie movie = tableViewMovies.getSelectionModel().getSelectedItem(); //Vælger objektet der skal ændres
-        if(movie == null)
-        {
-            error("Select movie to edit");
-        }
         FXMLLoader mainWindowParent =  new FXMLLoader(getClass().getResource("/sample/gui/view/newMovieEdit.fxml"));
         Scene mainWindowScene = null; //Scenen der skal vises
         mainWindowScene = new Scene(mainWindowParent.load());
