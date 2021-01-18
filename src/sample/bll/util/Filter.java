@@ -8,6 +8,10 @@ import java.util.List;
 
 public class Filter {
 
+    /*
+        Vi opretter i metoden filter en arraylist af movies, hvor i vi anvender
+        et for-loop til at
+    */
     public List<Movie> filter(List<Movie> filterBase, String query) {
 
         List<Movie> filterResult = new ArrayList<>();
@@ -23,6 +27,7 @@ public class Filter {
         List<Category> filterResultCat = new ArrayList<>();
         for(Category category : filterBaseCat) {
             if (compareToMovieCategory(query, category)) {
+                filterResultCat.add(category);
             }
         }
         return filterResultCat;

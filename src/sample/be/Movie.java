@@ -10,6 +10,10 @@ public class Movie {
     private String url;
     private Date lastview;
 
+    /*
+        Denne klasse er til vores objekt Movie, hvori vi henter og sætter alt dataen
+        ved anvendelse af get and set metoder
+     */
     public Movie(int id, String title, double rating, String url, Date lastview) {
         this.id = id;
         this.title = title;
