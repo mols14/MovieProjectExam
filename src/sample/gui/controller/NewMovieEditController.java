@@ -39,6 +39,9 @@ public class NewMovieEditController {
         categorymodel = new CategoryModel();
     }
 
+    /*
+        cancel-metode
+     */
     public void handleNewMovieCancelEdit(ActionEvent actionEvent) throws IOException {
         Parent newMovieWindow = FXMLLoader.load(getClass().getResource("/sample/gui/view/MainWindow.fxml")); // Path til fxml filen der tilhøre scenen som skal vises ved tryk på knap
         Scene newSongScene = new Scene(newMovieWindow); // Ny scene som skal vises oprettes
@@ -46,7 +49,9 @@ public class NewMovieEditController {
         mainWindowStage.setScene(newSongScene); // Sætter den nye scene
         mainWindowStage.show(); // Viser den nye scene
     }
-
+    /*
+        sætter data fra filmen som skal redigeres (udover datoen, da der var kluder i denne)
+    */
     public void setMovie(Movie movie){
         txtFieldMovieTitleEdit.setText(movie.getTitle());
         txtFieldNewMoviePersonalRatingEdit.setText(Double.toString(movie.getRating()));
@@ -54,6 +59,10 @@ public class NewMovieEditController {
         txtURLEdit.setText(movie.getUrl());
     }
 
+    /*
+        Redigere film ved at oprette et nyt song objekt og anvende
+        updateMovie metoden fra movieModel
+     */
     public void handleNewMovieDoneEdit(ActionEvent actionEvent) {
         LocalDate localDate = datePickerEdit.getValue();
         Instant instant = Instant.from(localDate.atStartOfDay(ZoneId.systemDefault()));
@@ -70,6 +79,9 @@ public class NewMovieEditController {
         }
     }
 
+    /*
+        Filechooser, der kun søger efter mp4 og mpeg4
+     */
     public void chooseUrlEdit(ActionEvent actionEvent) {
         FileChooser fileChooser = new FileChooser(); //Opretter ny fileChooser objekt
         fileChooser.setInitialDirectory(new File("Movies/")); //sætter pathen til mappen med sange
@@ -82,6 +94,9 @@ public class NewMovieEditController {
         }
     }
 
+    /*
+        error-metode
+     */
     public void error(String text)
     {
         Alert alert = new Alert(Alert.AlertType.ERROR, text, ButtonType.YES);

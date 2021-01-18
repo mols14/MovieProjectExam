@@ -19,7 +19,11 @@ public class MovieModel {
     public MovieModel() throws IOException {
         myMovieManager = new MyMovieManager();
     }
-
+/*
+    Opretter ObservableList med film objekter
+    således at den kan opdateres løbende. Henter allesange fra manageren
+*/
+    
     public ObservableList<Movie> getMovies() throws IOException {
         allMovies = FXCollections.observableArrayList();
         allMovies.addAll(myMovieManager.getAllMovies());

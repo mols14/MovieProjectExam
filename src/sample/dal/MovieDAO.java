@@ -95,7 +95,8 @@ public class MovieDAO {
     }
 
     /*
-
+        Innerjoiner Movie og Category columns i SQL databasen ved at innerjoin dem i den tredje column
+        ved navn Catmovie for at skabe en many to many forbindelse
      */
     public List<Movie> getCategoryMovies(int categoryID) throws SQLException {
         ArrayList<Movie> allMovies = new ArrayList<>();
@@ -130,7 +131,10 @@ public class MovieDAO {
         return allMovies;
     }
 
-
+    /*
+        Metode der anvendes til at muliggøre redigering af sang objekter i SQL databasen
+        ved anveldelse af SQL-kommandon UPDATE
+    */
     public void updateMovie(Movie movie) throws Exception {
         try (Connection con = connectionPool.checkOut()) {
             //Updater sange med de nye values ind i sang objektet

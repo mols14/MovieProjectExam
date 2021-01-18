@@ -26,16 +26,21 @@ public class NewCategoryController {
         categoryModel = new CategoryModel();
 
     }
-
+    /*
+        cancel metode til at ændre tilbage til man scene
+     */
     public void cancelCategory(javafx.event.ActionEvent event) throws IOException {
         Parent newCategoryWindow = FXMLLoader.load(getClass().getResource("/sample/gui/view/MainWindow.fxml")); // Path til fxml filen der tilhøre scenen som skal vises ved tryk på knap
-        Scene newSongScene = new Scene(newCategoryWindow); // Ny scene som skal vises oprettes
+        Scene newMovieScene = new Scene(newCategoryWindow); // Ny scene som skal vises oprettes
         Stage mainWindowStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        mainWindowStage.setScene(newSongScene); // Sætter den nye scene
+        mainWindowStage.setScene(newMovieScene); // Sætter den nye scene
         mainWindowStage.show(); // Viser den nye scene
     }
 
 
+    /*
+        Anvender createCategory fra categoryModel til at lave en ny kategory
+     */
     public void handleCreateCategory(ActionEvent actionEvent) throws SQLException, IOException {
             if( txtFieldCategory.getLength() ==0 ) {
                 error("Please fill out all fields");
@@ -46,6 +51,9 @@ public class NewCategoryController {
             }
         }
 
+        /*
+            error meddelse metode
+         */
     private void error(String text){
         Alert alert = new Alert(Alert.AlertType.ERROR, text, ButtonType.YES);
         alert.showAndWait();

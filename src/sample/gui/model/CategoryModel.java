@@ -15,7 +15,10 @@ import java.sql.SQLException;
     public CategoryModel() throws IOException {
     myMovieManager  = new MyMovieManager();
 }
-
+    /*
+      Opretter ObservableList med kategory objekter
+      således at den kan opdateres løbende. Henter alle kategorier fra manageren
+     */
     public ObservableList<Category> getCategories() throws IOException {
        allCategories = FXCollections.observableArrayList();
        allCategories.addAll(myMovieManager.getAllCategories());
