@@ -126,7 +126,10 @@ public class MainWindowController implements Initializable {
 
     public void handleAddNewMovie(ActionEvent actionEvent) throws IOException, SQLException {
         Category selectedCategory =  tableViewCategory.getSelectionModel().getSelectedItem();
-        //categoryModel.addMovieToCategory(selectedCategory.getCategoryId(), selectedMovie.getId());
+        if(selectedCategory == null)
+            {
+                error("Please select category");
+            }
         FXMLLoader  loader = new FXMLLoader(getClass().getResource("/sample/gui/view/NewMovie.fxml")); // Path til FXML filen der tilhører scenen der skal vises
         Parent mainWindowParent = loader.load();
         //sæt category i new movie window til valgte categoey
@@ -158,7 +161,7 @@ public class MainWindowController implements Initializable {
     }
 
     private void error(String text){
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, text, ButtonType.YES);
+        Alert alert = new Alert(Alert.AlertType.ERROR, text, ButtonType.YES);
         alert.showAndWait();
     }
 
@@ -176,6 +179,10 @@ public class MainWindowController implements Initializable {
 
     public void removeCategory(ActionEvent actionEvent) {
         Category category = tableViewCategory.getSelectionModel().getSelectedItem();
+        if(category == null)
+        {
+            error("Please select a category");
+        }
         tableViewCategory.getItems().remove(category);
             if(category != null)
             {
@@ -189,6 +196,10 @@ public class MainWindowController implements Initializable {
 
     public void handlOpenMovie(ActionEvent actionEvent) throws IOException {
         Movie movie = tableViewMovies.getSelectionModel().getSelectedItem();
+        if(movie == null)
+        {
+            error("Please select movie");
+        }
         Desktop.getDesktop().open(new File(moviePath + movie.getUrl()));
     }
 

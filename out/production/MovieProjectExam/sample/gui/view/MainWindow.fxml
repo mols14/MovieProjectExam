@@ -15,9 +15,9 @@
       </TableView>
       <TableView fx:id="tableViewMovies" layoutX="361.0" layoutY="64.0" prefHeight="298.0" prefWidth="346.0">
         <columns>
-            <TableColumn fx:id="movieTitleCol" prefWidth="75.0" text="Title" />
-          <TableColumn fx:id="moviePersRatingCol" prefWidth="117.0" text="Personal rating" />
-            <TableColumn fx:id="movieLastViewCol" prefWidth="153.0" text="Last Viewed" />
+            <TableColumn fx:id="movieTitleCol" prefWidth="120.0" text="Title" />
+          <TableColumn fx:id="moviePersRatingCol" prefWidth="130.0" text="Personal rating" />
+            <TableColumn fx:id="movieLastViewCol" prefWidth="95.0" text="Last Viewed" />
         </columns>
       </TableView>
       <TextField layoutX="361.0" layoutY="23.0" onKeyReleased="#handleSearch" prefHeight="18.0" prefWidth="144.0" promptText="Enter Search..." />

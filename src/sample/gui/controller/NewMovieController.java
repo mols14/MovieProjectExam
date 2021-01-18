@@ -5,9 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import sample.be.Category;
@@ -55,9 +53,16 @@ public class NewMovieController {
         LocalDate localDate = datePicker.getValue();
         Instant instant = Instant.from(localDate.atStartOfDay(ZoneId.systemDefault()));
         Date date = Date.from(instant);
-        Movie createdMovie = movieModel.createMovie(txtFieldMovieTitle.getText(), Double.parseDouble(txtFieldNewMoviePersonalRating.getText()), txtURL.getText(), date);
-        categorymodel.addMovieToCategory(Integer.parseInt(txtCategoryId.getText()),createdMovie.getId());
-        handleNewMovieCancel(actionEvent);
+        try {
+            Movie createdMovie = movieModel.createMovie(txtFieldMovieTitle.getText(), Double.parseDouble(txtFieldNewMoviePersonalRating.getText()), txtURL.getText(), date);
+            categorymodel.addMovieToCategory(Integer.parseInt(txtCategoryId.getText()), createdMovie.getId());
+            handleNewMovieCancel(actionEvent);
+        }
+        catch (Exception exception)
+        {
+            error("Please fill out all fields");
+            exception.printStackTrace();
+        }
     }
 
     public void chooseUrl(ActionEvent actionEvent) {
@@ -70,5 +75,10 @@ public class NewMovieController {
         if (selectedFile != null) {
             txtURL.setText(selectedFile.getName());
         }
+    }
+
+    private void error(String text){
+        Alert alert = new Alert(Alert.AlertType.ERROR, text, ButtonType.YES);
+        alert.showAndWait();
     }
 }

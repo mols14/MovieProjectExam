@@ -5,6 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import sample.bll.MyMovieManager;
@@ -35,8 +37,18 @@ public class NewCategoryController {
 
 
     public void handleCreateCategory(ActionEvent actionEvent) throws SQLException, IOException {
-        categoryModel.createCategory(txtFieldCategory.getText());
-        cancelCategory(actionEvent);
+            if( txtFieldCategory.getLength() ==0 ) {
+                error("Please fill out all fields");
+            }
+            else {
+                categoryModel.createCategory(txtFieldCategory.getText());
+                cancelCategory(actionEvent);
+            }
+        }
+
+    private void error(String text){
+        Alert alert = new Alert(Alert.AlertType.ERROR, text, ButtonType.YES);
+        alert.showAndWait();
     }
 
 }
