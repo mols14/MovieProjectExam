@@ -16,9 +16,7 @@ import sample.be.Movie;
 import sample.gui.model.CategoryModel;
 import sample.gui.model.MovieModel;
 
-import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -143,6 +141,7 @@ public class MainWindowController implements Initializable {
 
     }
 
+
     public void handleRemoveMovie(ActionEvent actionEvent) throws SQLException {
         Movie movie = tableViewMovies.getSelectionModel().getSelectedItem();
         Category category = tableViewCategory.getSelectionModel().getSelectedItem();
@@ -159,7 +158,6 @@ public class MainWindowController implements Initializable {
             exception.printStackTrace();
         }
     }
-
     private void error(String text){
         Alert alert = new Alert(Alert.AlertType.ERROR, text, ButtonType.YES);
         alert.showAndWait();
@@ -204,5 +202,15 @@ public class MainWindowController implements Initializable {
     }
 
 
-
+    public void handleEditSong(ActionEvent actionEvent) throws IOException {
+        Movie movie = tableViewMovies.getSelectionModel().getSelectedItem(); //Vælger objektet der skal ændres
+        FXMLLoader mainWindowParent =  new FXMLLoader(getClass().getResource("/sample/gui/view/newMovieEdit.fxml"));
+        Scene mainWindowScene = null; //Scenen der skal vises
+        mainWindowScene = new Scene(mainWindowParent.load());
+        Stage editSongStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        editSongStage.setScene(mainWindowScene); // Sætter nuværende scene
+        NewMovieEditController newMovieEditController= mainWindowParent.getController();
+        newMovieEditController.setMovie(movie);
+        editSongStage.show(); // Viser Scenen som lige er blevet sat ovenover
+    }
 }
