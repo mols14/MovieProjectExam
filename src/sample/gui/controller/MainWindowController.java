@@ -7,9 +7,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 import javafx.scene.control.cell.PropertyValueFactory;
 import sample.be.Category;
@@ -17,6 +16,7 @@ import sample.be.Movie;
 import sample.gui.model.CategoryModel;
 import sample.gui.model.MovieModel;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.io.File;
@@ -143,15 +143,25 @@ public class MainWindowController implements Initializable {
     public void handleRemoveMovie(ActionEvent actionEvent) throws SQLException {
         Movie movie = tableViewMovies.getSelectionModel().getSelectedItem();
         Category category = tableViewCategory.getSelectionModel().getSelectedItem();
-        tableViewMovies.getItems().remove(movie);
+        if(category == null){
+            error("Please select category");
+        }
+        try {
             if(movie != null){
-                try {
-                    categoryModel.deleteMovieFromCategory(category.getCategoryId(), movie.getId());
-                } catch (Exception exception) {
-                    exception.printStackTrace();
-                }
+                tableViewMovies.getItems().remove(movie);
+                categoryModel.deleteMovieFromCategory(category.getCategoryId(), movie.getId());
             }
+        } catch (Exception exception) {
+            error("Please select movie");
+            exception.printStackTrace();
+        }
     }
+
+    private void error(String text){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, text, ButtonType.YES);
+        alert.showAndWait();
+    }
+
     public void refreshMovieCategories() throws IOException, SQLException {
         tableViewMovies.getItems().clear();
         Category selectedCategory = tableViewCategory.getSelectionModel().getSelectedItem();
