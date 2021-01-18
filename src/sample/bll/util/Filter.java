@@ -10,7 +10,8 @@ public class Filter {
 
     /*
         Vi opretter i metoden filter en arraylist af movies, hvor i vi anvender
-        et for-loop til at
+        et for-loop til at køre igennem filterbasen (liste af film)
+        Der compares efter filmens titel og rating
     */
     public List<Movie> filter(List<Movie> filterBase, String query) {
 
@@ -22,6 +23,11 @@ public class Filter {
         }
         return filterResult;
     }
+
+    /*
+    filtercat metoden anvender sammee logik som filter metoden
+    med den forskel at det er en arraylist med categorier der bliver søgt efter, i stedet for sange
+     */
     public List<Category> filterCat(List<Category> filterBaseCat, String query){
 
         List<Category> filterResultCat = new ArrayList<>();

@@ -14,7 +14,11 @@ public class CategoryDAO {
     public CategoryDAO() throws IOException  {
         connectionPool = JDBCConnectionPool.getInstance();
     }
+        /*
+        I getAllCategories metoden henter vi alle vores kategorier fra vores Category database i SQL
+        og indsætter dem ind i en arrayliste til anvendelse i intejll
 
+        */
     public List<Category> getAllCategories() throws IOException {
 
         ArrayList<Category> allCategories = new ArrayList<>();
@@ -36,7 +40,10 @@ public class CategoryDAO {
         return allCategories;
     }
 
-    //Den rigtige
+    /*
+        I denne metode opretter vi en kategori i vores Category SQL table
+     */
+
     public Category createCategory(String genre) throws SQLException {
         String sql = "INSERT INTO Category (genre) VALUES(?);";
         Connection con = connectionPool.checkOut(); // <<< Using the object pool here <<<
@@ -62,6 +69,9 @@ public class CategoryDAO {
     }
 
 
+    /*
+            I denne metode sletter vi en kategori i vores Category SQL table
+    */
 
     public Category deleteCategory(Category category) throws SQLException {
             try (Connection con = connectionPool.checkOut()) {
@@ -77,6 +87,10 @@ public class CategoryDAO {
             return null;
     }
 
+    /*
+        I denne metode indsætter vi en både en kategori og movie ind i vores CatMovie database
+        for at skabe en forbindelse mellem disse
+     */
     public void addMovieToCategory(int categoryId, int movieId)
     {
         //Insert into SQL kommando, hvori at playlistID og songID bliver smidt ind
@@ -93,7 +107,9 @@ public class CategoryDAO {
             System.out.println(ex);
         }
     }
-
+    /*
+        I denne metode sletter vi filmen fra vores kategori
+     */
     public void deleteMovieFromCategory(int CategoryId, int MovieId)
     {
         String sql = "DELETE FROM CatMovie where CategoryId = ? and MovieId = ?";

@@ -18,6 +18,11 @@ public class MovieDAO {
         connectionPool = JDBCConnectionPool.getInstance();
     }
 
+    /*
+      I getAllMovies metoden henter vi alle vores film fra vores Movie database i SQL
+      og indsætter dem ind i en arrayliste til anvendelse i intejll
+      */
+
     public List<Movie> getAllMovies() throws IOException {
 
         ArrayList<Movie> allMovies = new ArrayList<>();
@@ -43,6 +48,9 @@ public class MovieDAO {
         return allMovies;
     }
 
+    /*
+        Opretter en film i vores Movie table i vores database Movie objektets korrekte variabler
+     */
     public Movie createMovie(String title, double rating, String url, Date lastview) throws SQLException {
         String sql = "INSERT INTO Movie ( title, rating, url, lastview) VALUES(?,?,?,?);";
         Connection con = connectionPool.checkOut(); // <<< Using the object pool here <<<
@@ -69,6 +77,9 @@ public class MovieDAO {
         }
     }
 
+    /*
+        Sletter movie objektet fra vores database
+     */
     public Movie deleteMovie(Movie movie) throws SQLException {
         try (Connection con = connectionPool.checkOut()) {
             String sql = "DELETE FROM Movie WHERE Id=?;";
@@ -82,6 +93,10 @@ public class MovieDAO {
         }
         return null;
     }
+
+    /*
+
+     */
     public List<Movie> getCategoryMovies(int categoryID) throws SQLException {
         ArrayList<Movie> allMovies = new ArrayList<>();
         try (Connection con = connectionPool.checkOut()) {

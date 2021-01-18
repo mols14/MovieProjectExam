@@ -18,6 +18,9 @@ public class MyMovieManager {
     private MovieDAO movieDAO;
     private Filter filter;
 
+    /*
+    Denne klasse er en manager , som indeholder metoder vi anvender i vores modeller
+     */
     public MyMovieManager() throws IOException {
         categoryDAO = new CategoryDAO();
         movieDAO = new MovieDAO();
