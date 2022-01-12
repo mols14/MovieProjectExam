@@ -6,7 +6,7 @@ public class Category {
     private String genre;
 
 
-    /* I dennee klasse er der vores forskellige variabler til vores objekt "Category"
+    /* I denne klasse er der vores forskellige variabler til vores objekt "Category"
     Ikke så meget mere at forklare
      */
     public Category(int id, String genre) {
